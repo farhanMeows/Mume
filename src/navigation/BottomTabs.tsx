@@ -59,13 +59,12 @@ function CustomTabBar(props: BottomTabBarProps) {
   const hideMiniPlayer = focusedRouteName === "Player";
 
   return (
-    <View style={tw`relative`}>
+    <View style={tw`mt-[-35]`}>
       {!hideMiniPlayer && (
         <View
           style={[
-            tw`absolute left-0 right-0 mx-0 mb-2 rounded-lg overflow-hidden`,
+            tw`rounded-lg overflow-hidden mx-0`,
             {
-              bottom: 60,
               shadowColor: "#000",
               shadowOffset: { width: 0, height: -2 },
               shadowOpacity: 0.25,
