@@ -17,7 +17,7 @@ export default function SuggestedTab({
 }: SuggestedTabProps) {
   return (
     <FlatList
-      data={[1]} // dummy
+      data={[1]}
       renderItem={() => (
         <>
           <RecentlyPlayed />

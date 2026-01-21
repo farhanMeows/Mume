@@ -11,7 +11,6 @@ export default function SongListScreen({ route, navigation }: any) {
 
   return (
     <SafeAreaView style={[tw`flex-1`, { backgroundColor: theme.background }]}>
-      {/* Header */}
       <View style={tw`px-4 py-3`}>
         <View style={tw`flex-row items-center mb-2`}>
           <TouchableOpacity
@@ -29,7 +28,6 @@ export default function SongListScreen({ route, navigation }: any) {
         </Text>
       </View>
 
-      {/* List */}
       <FlatList
         data={songs}
         keyExtractor={(item) => item.id}

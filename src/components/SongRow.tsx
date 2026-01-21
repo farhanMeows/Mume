@@ -67,7 +67,6 @@ export default function SongRow({ song }: { song: Song }) {
         <Ionicons name="ellipsis-vertical" size={20} color={theme.subText} />
       </TouchableOpacity>
 
-      {/* Menu Modal */}
       <Modal
         visible={showMenu}
         transparent

@@ -44,7 +44,6 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
     if (songs.length > 0) {
       useSongStore.setState({ songs });
       const firstSong = songs[0];
-      // If first song is already playing, toggle it
       if (currentSong?.id === firstSong.id) {
         togglePlay();
       } else {
@@ -53,15 +52,12 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
     }
   };
 
-  // Check if any song from this artist is currently playing
   const isArtistPlaying =
     currentSong && songs.some((s) => s.id === currentSong.id) && isPlaying;
 
   const ListHeader = () => (
     <View style={tw`mb-4`}>
-      {/* Artist Hero Section */}
       <View style={tw`items-center px-6 pt-6 pb-8`}>
-        {/* Large Image with Shadow */}
         <View
           style={[
             tw`shadow-lg`,
@@ -80,7 +76,6 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
           />
         </View>
 
-        {/* Artist Name */}
         <Text
           style={[
             tw`text-3xl font-bold mt-8 text-center tracking-wide`,
@@ -90,7 +85,6 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
           {artist.name}
         </Text>
 
-        {/* Stats Row (Mimicking the "1 Album | 20 Songs" style) */}
         <View style={tw`flex-row items-center mt-3 opacity-70`}>
           <Text style={[tw`text-sm font-medium`, { color: theme.text }]}>
             1 Album
@@ -99,10 +93,8 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
           <Text style={[tw`text-sm font-medium`, { color: theme.text }]}>
             {songs.length} Songs
           </Text>
-          {/* Optional: Add duration if you have the data, otherwise leave it clean */}
         </View>
 
-        {/* Big Action Button (No Shuffle) */}
         {!loading && songs.length > 0 && (
           <View style={tw`w-full flex-row mt-8 px-2`}>
             <TouchableOpacity
@@ -110,7 +102,7 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
               activeOpacity={0.8}
               style={[
                 tw`flex-1 flex-row items-center justify-center py-4 rounded-full shadow-md`,
-                { backgroundColor: theme.primary }, // Matches the orange button style
+                { backgroundColor: theme.primary },
               ]}
             >
               <Ionicons
@@ -127,7 +119,6 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
         )}
       </View>
 
-      {/* Section Header: Songs & See All */}
       {!loading && songs.length > 0 && (
         <View style={tw`flex-row items-center justify-between px-6 mt-2 mb-2`}>
           <Text style={[tw`text-xl font-bold`, { color: theme.text }]}>
@@ -145,19 +136,17 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
 
   return (
     <SafeAreaView style={[tw`flex-1`, { backgroundColor: theme.background }]}>
-      {/* Top Navigation Bar */}
       <View
         style={tw`px-4 py-3 flex-row items-center absolute z-10 top-10 left-0`}
       >
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          style={tw`p-2 rounded-full bg-black/20`} // Subtle background for visibility over content
+          style={tw`p-2 rounded-full bg-black/20`}
         >
           <Ionicons name="arrow-back" size={24} color={theme.text} />
         </TouchableOpacity>
       </View>
 
-      {/* Content */}
       {loading ? (
         <View style={tw`flex-1 items-center justify-center`}>
           <ActivityIndicator size="large" color={theme.primary} />
@@ -168,7 +157,7 @@ export default function ArtistDetailScreen({ route, navigation }: any) {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <SongRow song={item} />}
           ListHeaderComponent={ListHeader}
-          contentContainerStyle={tw`pb-32 pt-12`} // Added top padding for the absolute header
+          contentContainerStyle={tw`pb-32 pt-12`}
           showsVerticalScrollIndicator={false}
         />
       )}

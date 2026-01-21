@@ -36,7 +36,6 @@ export default function PlayerScreen({ navigation }: any) {
 
   return (
     <SafeAreaView style={[tw`flex-1`, { backgroundColor: theme.background }]}>
-      {/* Header */}
       <View style={tw`px-4 py-3 flex-row items-center justify-between`}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="chevron-down" size={28} color={theme.text} />
@@ -62,7 +61,6 @@ export default function PlayerScreen({ navigation }: any) {
         </TouchableOpacity>
       </View>
 
-      {/* Artwork */}
       <View style={tw`items-center mt-6`}>
         <Image
           source={{ uri: getBestImage(currentSong.image) }}
@@ -70,7 +68,6 @@ export default function PlayerScreen({ navigation }: any) {
         />
       </View>
 
-      {/* Song Info */}
       <View style={tw`items-center mt-8 px-6`}>
         <Text
           style={[tw`text-3xl font-bold text-center`, { color: theme.text }]}
@@ -83,12 +80,11 @@ export default function PlayerScreen({ navigation }: any) {
         </Text>
       </View>
 
-      {/* Progress Bar */}
       <View style={tw`px-6 mt-10`}>
         <Pressable
           onPress={(e) => {
             const { locationX } = e.nativeEvent;
-            const barWidth = 300; // matches visual width
+            const barWidth = 350; // matches visual width
             const ratio = Math.min(Math.max(locationX / barWidth, 0), 1);
             seek(ratio);
           }}
@@ -121,7 +117,6 @@ export default function PlayerScreen({ navigation }: any) {
         </View>
       </View>
 
-      {/* Controls */}
       <View style={tw`flex-row justify-center items-center mt-12 px-12`}>
         <TouchableOpacity onPress={playPrevious} style={tw`mx-8`}>
           <Ionicons name="play-skip-back" size={40} color={theme.text} />

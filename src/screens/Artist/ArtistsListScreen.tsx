@@ -19,12 +19,11 @@ export default function ArtistsListScreen({ route, navigation }: any) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredArtists = artists.filter((artist: any) =>
-    artist.name.toLowerCase().includes(searchQuery.toLowerCase())
+    artist.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
     <SafeAreaView style={[tw`flex-1`, { backgroundColor: theme.background }]}>
-      {/* Header */}
       <View style={tw`px-4 py-3`}>
         <View style={tw`flex-row items-center mb-2`}>
           <TouchableOpacity
@@ -43,7 +42,6 @@ export default function ArtistsListScreen({ route, navigation }: any) {
         </Text>
       </View>
 
-      {/* Artists List */}
       <FlatList
         data={filteredArtists}
         keyExtractor={(item) => item.id}

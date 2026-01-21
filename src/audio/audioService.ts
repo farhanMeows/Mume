@@ -6,13 +6,13 @@ let statusCallback: ((status: AVPlaybackStatus) => void) | null = null;
 
 Audio.setAudioModeAsync({
   allowsRecordingIOS: false,
-  staysActiveInBackground: true, // ✅ background playback
+  staysActiveInBackground: true,
   playsInSilentModeIOS: true,
   shouldDuckAndroid: true,
 });
 
 export function setOnPlaybackStatusUpdate(
-  cb: (status: AVPlaybackStatus) => void
+  cb: (status: AVPlaybackStatus) => void,
 ) {
   statusCallback = cb;
 }
@@ -28,7 +28,7 @@ export async function playSound(url: string) {
     { shouldPlay: true },
     (status) => {
       statusCallback?.(status);
-    }
+    },
   );
 
   sound = newSound;

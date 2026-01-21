@@ -31,7 +31,6 @@ function HomeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomeMain" component={HomeScreen} />
 
-      {/* Full Player as modal */}
       <Stack.Screen
         name="Player"
         component={PlayerScreen}

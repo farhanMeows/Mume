@@ -16,7 +16,6 @@ export default function MiniPlayer() {
 
   return (
     <Pressable
-      // activeOpacity={0.9}
       onPress={() => navigation.navigate("Player")}
       style={[
         tw`flex-row items-center px-3 py-3`,
@@ -25,13 +24,11 @@ export default function MiniPlayer() {
         },
       ]}
     >
-      {/* Artwork */}
       <Image
         source={{ uri: getBestImage(currentSong.image) }}
         style={tw`w-10 h-10 rounded-md mr-3 bg-gray-700`}
       />
 
-      {/* Song title */}
       <View style={tw`flex-1`}>
         <Text
           numberOfLines={1}
@@ -41,7 +38,6 @@ export default function MiniPlayer() {
         </Text>
       </View>
 
-      {/* Controls */}
       <View style={tw`flex-row items-center`}>
         <TouchableOpacity
           onPress={(e) => {

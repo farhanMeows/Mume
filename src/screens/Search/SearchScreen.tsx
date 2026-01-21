@@ -42,20 +42,18 @@ export default function SearchScreen({ navigation }: any) {
       } finally {
         setLoading(false);
       }
-    }, 500); // 500ms debounce
+    }, 500);
 
     return () => clearTimeout(delaySearch);
   }, [searchQuery]);
 
   return (
     <SafeAreaView style={[tw`flex-1`, { backgroundColor: theme.background }]}>
-      {/* Header */}
       <View style={tw`px-4 py-3 flex-row items-center`}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={tw`mr-3`}>
           <Ionicons name="arrow-back" size={24} color={theme.text} />
         </TouchableOpacity>
 
-        {/* Search Input */}
         <View
           style={[
             tw`flex-1 flex-row items-center px-3 py-2 rounded-lg`,
@@ -84,7 +82,6 @@ export default function SearchScreen({ navigation }: any) {
         </View>
       </View>
 
-      {/* Results */}
       {loading ? (
         <ActivityIndicator style={tw`mt-10`} size="large" />
       ) : results.length > 0 ? (

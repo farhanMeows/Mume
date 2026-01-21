@@ -13,7 +13,6 @@ export default function QueueScreen({ navigation }: any) {
 
   return (
     <SafeAreaView style={[tw`flex-1`, { backgroundColor: theme.background }]}>
-      {/* Header */}
       <View style={tw`px-4 py-3`}>
         <View style={tw`flex-row items-center justify-between mb-2`}>
           <View style={tw`flex-row items-center`}>
@@ -41,7 +40,6 @@ export default function QueueScreen({ navigation }: any) {
         </Text>
       </View>
 
-      {/* Queue List */}
       {queue.length === 0 ? (
         <View style={tw`flex-1 items-center justify-center px-8`}>
           <Ionicons name="list-outline" size={64} color={theme.subText} />

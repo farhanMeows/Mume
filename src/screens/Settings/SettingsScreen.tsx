@@ -15,14 +15,12 @@ export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={[tw`flex-1`, { backgroundColor: theme.background }]}>
-      {/* Header */}
       <View style={tw`px-4 py-3`}>
         <Text style={[tw`text-2xl font-bold`, { color: theme.text }]}>
           Settings
         </Text>
       </View>
 
-      {/* Theme Section */}
       <View style={tw`px-4 mt-4`}>
         <Text
           style={[tw`text-sm font-semibold mb-3`, { color: theme.subText }]}
@@ -45,8 +43,8 @@ export default function SettingsScreen() {
                   option === "light"
                     ? "sunny"
                     : option === "dark"
-                    ? "moon"
-                    : "phone-portrait"
+                      ? "moon"
+                      : "phone-portrait"
                 }
                 size={22}
                 color={theme.text}

@@ -6,12 +6,17 @@ import { useEffect } from "react";
 import { useSongStore } from "./src/store/songStore";
 
 function Bootstrap() {
-  const hydratePlayer = useSongStore((s) => s.hydratePlayer);
-
   useEffect(() => {
-    hydratePlayer();
-    useSongStore.getState().hydrateRecentlyPlayed();
-    useSongStore.getState().hydrateQueue();
+    const init = () => {
+      const { hydratePlayer, hydrateRecentlyPlayed, hydrateQueue } =
+        useSongStore.getState();
+
+      hydratePlayer();
+      hydrateRecentlyPlayed();
+      hydrateQueue();
+    };
+
+    init();
   }, []);
 
   return null;

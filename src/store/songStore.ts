@@ -14,8 +14,7 @@ import {
   loadLastPlayedSong,
 } from "../storage/playerStorage";
 
-/* ---------- Types ---------- */
-
+//types
 export interface SongImage {
   quality: string;
   url: string;
@@ -49,18 +48,18 @@ export interface Song {
     featured?: Artist[];
     all?: Artist[];
   };
-  primaryArtists?: string; // Legacy support for old format
+  primaryArtists?: string;
   image?: SongImage[];
   downloadUrl: SongAudio[];
 }
 
 interface SongState {
-  /* Song list */
+  // Song list
   songs: Song[];
   loading: boolean;
   fetchSongs: (query: string) => Promise<void>;
 
-  /* Player */
+  // Player
   currentSong: Song | null;
   currentIndex: number;
   isPlaying: boolean;
@@ -68,7 +67,7 @@ interface SongState {
   durationMillis: number;
   recentlyPlayed: Song[];
 
-  /* Queue */
+  //Queue
   queue: Song[];
   addToQueue: (song: Song) => void;
   removeFromQueue: (songId: string) => void;
@@ -86,14 +85,14 @@ interface SongState {
   resumeCurrentSong: () => Promise<void>;
 }
 
-/* ---------- Store ---------- */
+//store
 
 export const useSongStore = create<SongState>((set, get) => ({
-  /* ---------- List ---------- */
+  //list
   songs: [],
   loading: false,
 
-  /* ---------- Player ---------- */
+  //player
   currentSong: null,
   currentIndex: -1,
   isPlaying: false,
@@ -101,7 +100,7 @@ export const useSongStore = create<SongState>((set, get) => ({
   durationMillis: 1,
   recentlyPlayed: [],
 
-  /* ---------- Queue ---------- */
+  //queue
   queue: [],
 
   addToQueue: (song) => {
@@ -140,11 +139,9 @@ export const useSongStore = create<SongState>((set, get) => ({
     const url = getBestAudio(song.downloadUrl);
     if (!url) return;
 
-    // Attach playback listener ONCE per song
     setOnPlaybackStatusUpdate((status) => {
       if (!status.isLoaded) return;
 
-      // ⏭️ Auto-play next when song finishes
       if (status.didJustFinish) {
         get().playNext();
         return;
@@ -182,7 +179,6 @@ export const useSongStore = create<SongState>((set, get) => ({
     if (!currentSong) return;
 
     if (!isPlaying) {
-      // If audio was never loaded (app restart)
       await get().resumeCurrentSong();
       return;
     }
@@ -194,7 +190,6 @@ export const useSongStore = create<SongState>((set, get) => ({
   playNext: async () => {
     const { songs, currentIndex, queue } = get();
 
-    // Play from queue first if available
     if (queue.length > 0) {
       const nextSong = queue[0];
       get().removeFromQueue(nextSong.id);
@@ -220,13 +215,12 @@ export const useSongStore = create<SongState>((set, get) => ({
     set({
       currentSong: song,
       currentIndex: index,
-      isPlaying: false, // ❌ don’t auto play
+      isPlaying: false,
       positionMillis: 0,
       durationMillis: 1,
     });
 
     if (get().songs.length === 0) {
-      // Support both old and new API format
       const artistName =
         song.artists?.primary?.[0]?.name ||
         song.primaryArtists?.split(",")[0] ||

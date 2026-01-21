@@ -14,7 +14,6 @@ export default function RecentlyPlayed() {
 
   return (
     <View style={tw`mt-6`}>
-      {/* Header */}
       <View style={tw`flex-row justify-between px-4 mb-3`}>
         <Text style={[tw`text-lg font-semibold`, { color: theme.text }]}>
           Recently Played
@@ -32,7 +31,6 @@ export default function RecentlyPlayed() {
         </Text>
       </View>
 
-      {/* Horizontal list */}
       <FlatList
         data={recentlyPlayed}
         keyExtractor={(item) => item.id}

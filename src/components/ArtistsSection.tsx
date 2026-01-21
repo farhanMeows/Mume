@@ -12,7 +12,6 @@ export default function ArtistsSection({ artists }: { artists: any[] }) {
 
   return (
     <View style={tw`mt-6`}>
-      {/* Header */}
       <View style={tw`px-4 mb-3 flex-row justify-between items-center`}>
         <Text style={[tw`text-lg font-semibold`, { color: theme.text }]}>
           Artists
